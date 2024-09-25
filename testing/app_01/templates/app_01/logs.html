@@ -1,0 +1,25 @@
+{%extends 'app_01/base.html'%}
+
+{%block content%}
+    <table>
+        <tr>
+            <td>ip_address</td>
+            <td>date</td>
+            <td>method</td>
+            <td>url</td>
+            <td>answer</td>
+            <td>answer_size</td>
+        </tr>
+        
+        {%for i in loggs%}
+        <tr>
+            <td>{{i.address_ip}}</td>
+            <td>{{i.date}}</td>
+            <td><b>{{i.method}}</b></td>
+            <td>{{i.url}}</td>
+            <td>{{i.answer}}</td>
+            <td>{{i.answer_size}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{%endblock%}

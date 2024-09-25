@@ -8,4 +8,5 @@ app_name = 'logg'
 
 urlpatterns = [
     path('', views.upload_file),
+    path('list/', views.list_logs)
 ]
