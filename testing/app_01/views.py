@@ -7,7 +7,7 @@ from app_01.models import Logg
 def upload_file(request):
     if request.method == "POST":
         form = UploadFilesForm(request.POST,request.FILES)
-        new_log= Logg()
+
         if form.is_valid():
             file = form.cleaned_data.get('file')
             obj = form.save(commit=False)
@@ -16,7 +16,6 @@ def upload_file(request):
             f = obj.file.open('r')
             dict = f.read()
             for d in dict.split('\n'):
-
                 d_new = json.loads(d)
                 address_ip = d_new.get('remote_ip')
                 date = d_new.get('time')[:-15]
@@ -26,7 +25,6 @@ def upload_file(request):
                 url = method_url.split(' ')[1]
                 answer = int(d_new.get('response'))
                 answer_size = int(d_new.get('bytes'))
-                # print(f'{date=}\n{time=}\n{method=}\n{url=}\n{answer=}\n{answer_size=}\n\n')
                 Logg.objects.create(
                     date=date,
                     time = time,
